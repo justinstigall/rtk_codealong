@@ -1,0 +1,17 @@
+{
+  "name": "@bp/shared",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/types.js",
+  "type": "module",
+  "types": "dist/types.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "zod": "^3.20.3"
+  }
+}

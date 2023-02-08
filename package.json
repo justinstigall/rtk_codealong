@@ -1,0 +1,13 @@
+{
+  "name": "rtk_codealong",
+  "version": "1.0.0",
+  "description": "npm workspaces, typescript, simple backend api, shared types, react + redux toolkit",
+  "workspaces": [
+    "backend",
+    "frontend",
+    "shared"
+  ],
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  }
+}
