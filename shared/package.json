@@ -1,7 +1,7 @@
 {
   "name": "@bp/shared",
   "version": "1.0.0",
-  "description": "",
+  "description": "shared types package",
   "main": "dist/types.js",
   "type": "module",
   "types": "dist/types.d.ts",
