@@ -1,9 +1,8 @@
 import { z } from "zod";
 
-export const TodoCategoriesSchema = z.union([
-    z.literal("Personal"),
-    z.literal("Work"),
-]);
+export const TodoCategoriesArray = ["Personal", "Work"] as const;
+
+export const TodoCategoriesSchema = z.enum(TodoCategoriesArray);
 
 export type TodoCategories = z.infer<typeof TodoCategoriesSchema>;
 
