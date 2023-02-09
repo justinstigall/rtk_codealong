@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { TodoCategories, TodoCategoriesArray, TodoItem, TodoList } from '@bp/shared';
 import { nanoid } from 'nanoid';
 
