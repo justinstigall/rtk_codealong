@@ -1,10 +1,10 @@
 import * as React from 'react'
-import TodoList from "./TodoList";
+import Todos from "./Todos";
 
 const App = () =>
     <>
         <div className="font-medium bg-slate-500 text-center p-5">sample app</div>
-        <TodoList />
+        <Todos />
     </>;
 
 export default App;
