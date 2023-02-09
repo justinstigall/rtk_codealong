@@ -1,41 +1,41 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
-import { TodoCategories, TodoCategoriesArray, TodoItem, TodoList } from '@bp/shared';
+import { useState } from 'react';
+import { TodoCategories, TodoCategoriesArray, TodoItem } from '@bp/shared';
+import { useGetTodoListQuery, useUpdateTodoItemMutation, useDeleteTodoItemMutation, useAddTodoItemMutation } from './TodoApi';
 import { nanoid } from 'nanoid';
 
 const Todos = () => {
-    let [todoData, setTodoData] = useState<TodoList>([]);
     let [todoInputTitle, setTodoInputTitle] = useState("");
     let [todoInputNotes, setTodoInputNotes] = useState("");
     let [todoInputCategory, setTodoInputCategory] = useState<TodoCategories>("Personal");
 
-    useEffect(() => {
-        fetch("http://localhost:8888/api/todolist")
-            .then(response => response.json())
-            .then(data => setTodoData(data))
-    }, [])
+    const { data: todoData } = useGetTodoListQuery(null);
+    const [addTodoItem] = useAddTodoItemMutation();
+    const [updateTodoItem] = useUpdateTodoItemMutation();
+    const [deleteTodoItem] = useDeleteTodoItemMutation();
 
     const toggleComplete = (item: TodoItem) => {
-        const index = todoData.findIndex(a => a.id === item.id)
-        const tempdata = [...todoData];
-        tempdata[index].completed ? tempdata[index].completed = false : tempdata[index].completed = true
-        setTodoData(tempdata);
+        let temp = { ...item }
+        temp.completed ? temp.completed = false : temp.completed = true
+        updateTodoItem(temp);
     }
 
-    const removeItem = (item: TodoItem) => setTodoData(todoData.filter(a => a.id !== item.id))
+    const removeItem = (item: TodoItem) => {
+        deleteTodoItem(item);
+    }
 
     const addItem = () => {
-        setTodoData([...todoData,
-        {
-            id: nanoid(10),
-            title: todoInputTitle,
-            notes: todoInputNotes,
-            category: todoInputCategory,
-            completed: false,
-            tags: []
-        }])
+        addTodoItem(
+            {
+                id: nanoid(10),
+                title: todoInputTitle,
+                notes: todoInputNotes,
+                category: todoInputCategory,
+                completed: false,
+                tags: []
+            }
+        )
     }
-
 
     return (
         <div id="todolist" className='max-w-full p-8 bg-white rounded-lg shadow-lg'>
@@ -61,7 +61,7 @@ const Todos = () => {
             </div>
             <input type="text" name="todo title" className='bg-slate-200' onChange={(a) => setTodoInputTitle(a.target.value)} />
             <select className='pl-4' onChange={(a) => setTodoInputCategory(a.target.value as TodoCategories)}>
-                {TodoCategoriesArray?.map((a) => <option value={a}>{a}</option>)}
+                {TodoCategoriesArray?.map((a, i) => <option key={i} value={a}>{a}</option>)}
             </select>
             <button className='pl-4' type="submit" onClick={(a) => addItem()}>Add</button>
         </div>);
