@@ -59,11 +59,11 @@ const TodoList = () => {
                     )}
                 </div>
             </div>
-            <input type="text" name="todo title" className='bg-slate-100' onChange={(a) => setTodoInputTitle(a.target.value)} />
-            <select onChange={(a) => setTodoInputCategory(a.target.value as TodoCategories)}>
+            <input type="text" name="todo title" className='bg-slate-200' onChange={(a) => setTodoInputTitle(a.target.value)} />
+            <select className='pl-4' onChange={(a) => setTodoInputCategory(a.target.value as TodoCategories)}>
                 {TodoCategoriesArray?.map((a) => <option value={a}>{a}</option>)}
             </select>
-            <button type="submit" onClick={(a) => addItem()}>Add</button>
+            <button className='pl-4' type="submit" onClick={(a) => addItem()}>Add</button>
         </div>);
 }
 
