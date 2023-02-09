@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const TodoCategoriesArray = ["Personal", "Work"] as const;
+export const TodoCategoriesArray = ["Personal", "Work", "Other"] as const;
 
 export const TodoCategoriesSchema = z.enum(TodoCategoriesArray);
 
