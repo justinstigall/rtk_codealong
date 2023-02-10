@@ -43,7 +43,7 @@ const Todos = () => {
                 <div className='grid grid-cols-1'>
                     {todoData?.map(todo =>
                         <div key={todo.id}>
-                            <label className="flex items-center h-10 px-2 rounded">
+                            <div className="flex items-center h-10 px-2 rounded">
                                 <div onClick={() => toggleComplete(todo)}>{todo.completed ? checked_circle : circle}</div>
                                 <span className="ml-4 text-sm font-bold">{todo.title}</span>
                                 <span className="ml-4 text-sm">{todo.notes}</span>
@@ -54,7 +54,7 @@ const Todos = () => {
                                     )}
                                 </div>
                                 <div onClick={() => removeItem(todo)}>💥</div>
-                            </label>
+                            </div>
                         </div>
                     )}
                 </div>
